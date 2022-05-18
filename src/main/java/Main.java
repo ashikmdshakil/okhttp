@@ -42,12 +42,12 @@ public class Main {
         OkHttpClient client = new OkHttpClient();
         var user = new User();
         user.setName("Kamrul Hassan Jewel");
+        user.setMobileNumber("01517034829");
         user.setPassword("$2a$10$gwgXfv0hm857MgMn/vaTo.SSLkT5PFADi0kzf8kOf.jHMUsv2KazG");
         user.setActive(true);
         user.getRoles().add(new Role(1,"user"));
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.accumulate("user", user);
-        RequestBody body = RequestBody.create(jsonObject.toString(), JSON); // new
+        Gson gson = new Gson();
+        RequestBody body = RequestBody.create(gson.toJson(user), JSON); // new
         // RequestBody body = RequestBody.create(JSON, json); // old
         Request request = new Request.Builder()
                 .url("http://127.0.0.1:8081/registerUser")
